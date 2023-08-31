@@ -52,9 +52,9 @@ menu:
   - title:             Example
     url:               /example/
   - title:             Documentation
-    url:               category/docs/
+    url:               /docs/
   - title:             About
-    url:               category/about/
+    url:               /about/
   - title:             Project
     url:               /project/
 
@@ -82,8 +82,8 @@ paginate_path:         /:num/
 # Theme
 # ---------------------------------------------------------------------------------------
 
-# theme: jekyll-theme-hydejack
-remote_theme: hydecorp/hydejack@v9
+theme: jekyll-theme-hydejack
+# remote_theme: hydecorp/hydejack@v9
 
 
 # Customizaton
