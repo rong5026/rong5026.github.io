@@ -198,18 +198,23 @@ sudo vi /etc/ssh/sshd_config
 비밀번호 입력을 통해 ssh 접속 사용자를 인증한다는 부분이다.
 
 1. :wq! 를 입력해 저장
+<br/>
 
+
+## ✅ 5. ssh 서비스 실행
 ---
 
-### ✅ 5. ssh 서비스 실행
 
 ```bash
 sudo service ssh start
 ```
-
 *Starting OpenBSD Secure Shell server sshd    [ OK ]   →  이렇게 뜨면 성공이다.
 
-### ✅ 6. ssh 접속
+<br/>
+
+
+## ✅ 6. ssh 접속
+---
 
 ```bash
 ssh <계정이름>@<ip 주소> -p <포트번호>
@@ -222,19 +227,23 @@ ex) ssh hong@192.168.0.30 -p 4859
 
 IP 주소 : 휴대폰 Wi-Fi 정보에서 IP 값 설정
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/ce770823-03c6-4778-bea2-49415f575ddd/Untitled.jpeg)
+![phone3-7](phone3-7.jpeg)
+
 
 위의 IP주소는 Wi-Fi 공유기에서 휴대폰에 할당해준 **내부 IP 주소**이다. 그래서 같은 와이파이에 속해있어야만 ssh접속을 할 수 있다.
 
 **외부에서 접속가능**하도록 하기 위해서 **포트포워딩 설정**을 해주자
 
-### ✅ 7. 포트포워딩 설정 (외부 접속)
+</br>
 
+## ✅ 7. 포트포워딩 설정 (외부 접속)
+---
 공유기 관리자 페이지에 접속해서 **“포트포워딩”** 설정
 
 Iptime 공유기, TP Link 공유기는 http://192.168.0.1/ 이 주소로 접속해서 설정하면 된다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/0861d47f-af0f-47f3-84ed-59a60c1eea2e/Untitled.png)
+![phone3-8](phone3-8.png)
+
 
 이렇게 4859번 포트를 열었다.
 
@@ -242,14 +251,17 @@ IP 주소는 위의 휴대폰에 할당된 내부 IP를 적어주면 된다. ex)
 
 이렇게 한 후 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/6a71231e-6075-4d48-9dcd-25463ad163f6/Untitled.png)
+![phone3-9](phone3-9.png)
 
 ```bash
 ssh hong@<네이버 검색 아이피> -p 4859
 ex) ssh hong@113.124.21.12 -p 4859
 ```
 
-### ✅ 8. 내부 IP 고정
+</br>
+
+## ✅ 8. 내부 IP 고정
+---
 
 와이파이에 연결되어 있는 휴대폰의 내부 IP가 아까는 192.168.0.30 이였지만 
 
@@ -263,11 +275,14 @@ ex) ssh hong@113.124.21.12 -p 4859
 
 - **TP-Link 공유기**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/dfd496b7-08b4-4ad4-96d3-33d8bb1f869b/Untitled.png)
+![phone3-10](phone3-10.png)
 
 DHCP → 주소 예약 → 새로 추가
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/b8bcccb8-4c7a-4d52-89ac-8960b8f0ecd8/Untitled.png)
+<br/>
+
+![phone3-11](phone3-11.png)
+
 
 MAC 주소 : 휴대전화 MAC 주소 입력
 
@@ -275,19 +290,26 @@ MAC 주소 : 휴대전화 MAC 주소 입력
 
 → 바뀐 MAC 주소 확인 후 입력칸에 입력
 
+</br>
+
 IP 주소 : 아까 할당받은 휴대전화 Wi-Fi IP 주소 ( 다른 주소를 할당해도 됨 ) 
 
 ex ) 192.168.0.30
 
 - **Ip-time 공유기**
 
-[아이피 타임 공유기 내부 아이피 주소 고정해서 사용 하기 - insideBOX](https://comeinsidebox.com/fixed-ip-address/)
+참고링크 : [아이피 타임 공유기 내부 아이피 주소 고정해서 사용 하기 - insideBOX](https://comeinsidebox.com/fixed-ip-address/)
+
+<br/>
 
 **🥳 여기까지 완료했으면 휴대폰에서 Wi-Fi를 껐다가 연결해도 똑같은 IP주소를 할당 받을 것이다!** 
 
+
+</br>
+
+## ✅ 9. DDNS 설정
 ---
 
-### ✅ 9. DDNS 설정
 
 ```bash
 ssh hong@113.124.21.12 -p 4859
@@ -299,7 +321,7 @@ ssh hong@113.124.21.12 -p 4859
 
 - **Ip-time 공유기**
     
-    →  무료로 DDNS 서비스를 지원한다!  ex) [**example.iptime.org](https://comeinsidebox.com/fixed-ip-address/)**  
+    →  무료로 DDNS 서비스를 지원한다!  ex) [example.iptime.org](https://comeinsidebox.com/fixed-ip-address/)
     
     [[ipTIME] DDNS 설정으로 외부에서 쉽게 공유기에 접속하기](https://luckygg.tistory.com/271)
     
@@ -308,10 +330,8 @@ ssh hong@113.124.21.12 -p 4859
     
     → 한달간 무료로 DDNS를 지원해준다 ( [www.no-ip.com](http://www.no-ip.com/) ) 
     
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/b8e6cb5d-8c89-400d-be2c-c912d43705d1/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/0a0aa064-f1ff-4462-86c3-d066d486ecf7/Untitled.png)
+![phone3-12](phone3-12.png)
+![phone3-13](phone3-13.png)
 
 1. [www.no-ip.com](http://www.no-ip.com/)  사이트에 회원가입 후 
 2. Dynamic DNS → NO-IP Hostnames 클릭
@@ -333,15 +353,22 @@ ssh <사용자 이름>@<설정한 도메인 이름> -p <포트번호>
 ssh hong@113.124.11.12 -p 4859   ->  ssh hong@domain.ddns.net -p 4859
 ```
 
+<br/>
+
 - 🎉 **접속 결과 사진**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/d77c91c7-0db8-43eb-b9f7-4de2162df2df/Untitled.png)
+![phone3-14](phone3-14.png)
 
-### ✅ 10. SSH Config 설정 ( 더 쉽게 접속하는 방법 )
+<br/>
+
+## ✅ 10. SSH Config 설정 ( 더 쉽게 접속하는 방법 )
+---
 
 위에서 **IP주소**를 외우지 않아도 **도메인**으로 SSH에 접속할 수 있도록 설정하였다.
 
 하지만 **유저이름 + 도메인 + 포트번호** 입력하는 것도 번거롭다.. 그래서 이를 더 단순화 시켜 ssh에 접속해보자!
+
+</br>
 
 **💻 Mac 기준입니당**
 
@@ -352,15 +379,21 @@ ls -al   # 현재 디렉토리에서 모든 파일 보기
 
 그럼 파일 목록이 보이는데  **“.ssh”** 폴더가 있는지 확인하자!
 
+
 - config 파일 생성 ( 기존에 .ssh 폴더 안에 config가 없을 경우에 자동생성)
 
 ```bash
 vi ~/.ssh/config
 ```
 
+</br>
 - [ i ] 를 입력하여 파일 수정모드로 변경
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8eddc1b4-ba06-4c44-972a-b0fb222690b2/6c9f0489-ead6-4e00-916c-38cea6065544/Untitled.png)
+</br>
+</br>
+
+![phone3-15](phone3-15.png)
+
 
 ```bash
 Host      <접속할 이름>
@@ -373,12 +406,14 @@ IdentityFile ~/.ssh/id_rsa. #ssh 공개키로 접속 / 기본 값은 프로토�
 - 수정 후 파일저장
 1. ESC 클릭 
 2. :wq! 입력
+</br>
 
 - ssh config 권한 설정
 
 ```bash
  chmod 440 ~/.ssh/config
 ```
+</br>
 
 - **끝** 🎉
 
